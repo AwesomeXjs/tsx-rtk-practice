@@ -1,8 +1,41 @@
 @import '../../../scss/variables';
-
-.redStyleBtn {
-	background-color: rgb(104, 8, 8);
+.customBtnWrapper {
+	background-color: $backgroundColor;
+	cursor: pointer;
+	border: 1px solid white;
+	padding: 10px 30px;
+	border-radius: $radius;
+	transition: $transition;
+	font-family: $userfont;
+	font-weight: bold;
+	transform-style: preserve-3d;
+	margin: 10px;
 }
-.blueStyleBtn {
-	background-color: rgb(19, 102, 197);
+.customBtnWrapper:active {
+	transform: scale(0.9);
+}
+
+.customBtnWrapper:after {
+	top: -100%;
+	left: 0;
+	width: 100%;
+	position: absolute;
+	padding: 10px 30px;
+	border-radius: $radius;
+	transform-origin: left bottom;
+	transform: rotateX(90deg);
+}
+
+.customBtnWrapper:hover {
+	transform-origin: center bottom;
+	transform: rotateX(-90deg) translateY(100%);
+}
+
+.variantRed:after {
+	background: rgb(109, 8, 8);
+	content: 'Удалить';
+}
+.variantGreen:after {
+	background: #3a9999;
+	content: 'Готово!';
 }

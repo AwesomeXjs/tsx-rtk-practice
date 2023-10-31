@@ -1,12 +1,19 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import styles from './ToDoForm.module.scss'
-import { todoObject } from '../../custom/todo'
-import { useAppDispatch } from '../../custom/hooks'
-import { addTodo } from '../../state/Slices/ToDoSlice'
+import { useAppDispatch, useAppSelector } from '../../custom/hooks'
+import {
+	addTodo,
+	deleteAllTodos,
+	removeCompleteTodo,
+	todosStateArray,
+} from '../../state/Slices/ToDoSlice'
 import CustomButton from '../../custom/UI/CustomButton/CustomButton'
+import CustomInput from '../../custom/UI/CustomInput/CustomInput'
+import { v4 as uuidv4 } from 'uuid'
 
 const ToDoForm: FC = () => {
 	const dispatch = useAppDispatch()
+	const todos = useAppSelector(todosStateArray)
 	const [text, setText] = useState<{ title: string; description: string }>({
 		title: '',
 		description: '',
@@ -23,7 +30,8 @@ const ToDoForm: FC = () => {
 		if (text.title.trim().length && text.description.trim().length) {
 			dispatch(
 				addTodo({
-					...todoObject,
+					id: uuidv4(),
+					complete: false,
 					title: text.title,
 					description: text.description,
 				})
@@ -34,6 +42,15 @@ const ToDoForm: FC = () => {
 			})
 		}
 	}
+
+	const removeCompleteTodosHandler = () => {
+		dispatch(removeCompleteTodo(todos))
+	}
+
+	const deleteAllTodoses = () => {
+		dispatch(deleteAllTodos([]))
+	}
+
 	return (
 		<div>
 			<form
@@ -41,24 +58,31 @@ const ToDoForm: FC = () => {
 				action='submit'
 				onSubmit={fromSubmitHandler}
 			>
-				<input
+				<CustomInput
 					type='text'
 					name='title'
+					placeholder='Введите название...'
 					value={text.title}
 					onChange={inputChangeHandler}
 				/>
-				<input
+				<CustomInput
 					type='text'
 					name='description'
+					placeholder='Введите описание...'
 					value={text.description}
 					onChange={inputChangeHandler}
 				/>
-				<div>
-					<CustomButton onClick={() => {}} type='submit'>
-						Добавить
-					</CustomButton>
-				</div>
+				<div className={styles.buttonWrapper}></div>
+				<CustomButton variant={true} type='submit'>
+					Добавить
+				</CustomButton>
 			</form>
+			<CustomButton onClick={deleteAllTodoses} variant={false}>
+				Удалить все
+			</CustomButton>
+			<CustomButton onClick={removeCompleteTodosHandler} variant={false}>
+				Удалить выполненые
+			</CustomButton>
 		</div>
 	)
 }
