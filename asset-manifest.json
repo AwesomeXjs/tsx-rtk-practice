@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tsx-rtk-practice/static/css/main.b066c787.css",
+    "main.js": "/tsx-rtk-practice/static/js/main.502012ab.js",
+    "index.html": "/tsx-rtk-practice/index.html",
+    "main.b066c787.css.map": "/tsx-rtk-practice/static/css/main.b066c787.css.map",
+    "main.502012ab.js.map": "/tsx-rtk-practice/static/js/main.502012ab.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b066c787.css",
+    "static/js/main.502012ab.js"
+  ]
+}
