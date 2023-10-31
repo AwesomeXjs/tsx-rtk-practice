@@ -72,7 +72,7 @@ const ToDoForm: FC = () => {
 					value={text.description}
 					onChange={inputChangeHandler}
 				/>
-				<div className={styles.buttonWrapper}></div>
+			
 				<CustomButton variant={true} type='submit'>
 					Добавить
 				</CustomButton>
