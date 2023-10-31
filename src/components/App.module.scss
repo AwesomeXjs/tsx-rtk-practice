@@ -1,0 +1,11 @@
+@import '../scss/_variables.scss';
+
+.appWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 2%;
+	h1 {
+		font-size: 55px;
+	}
+}
